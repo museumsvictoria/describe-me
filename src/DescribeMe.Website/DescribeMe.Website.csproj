@@ -124,7 +124,6 @@
     <Content Include="assets\logo-twitter.png" />
     <Content Include="500.html" />
     <Content Include="favicon.ico" />
-    <Content Include="google2ee694bf27b81b69.html" />
     <Content Include="js\lib\jquery-ui-1.8.23.custom.min.js" />
     <Content Include="js\lib\jquery.signalR.js" />
     <Content Include="js\lib\modernizr-2.5.3.js" />
