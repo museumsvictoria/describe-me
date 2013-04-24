@@ -1,0 +1,43 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts
+{    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var loggingHub = $.connection.loggingHub;
+            var log = $('.log');
+            var console = $('.console');
+            console.scrollTop(console[0].scrollHeight);
+
+            loggingHub.sendLogMessage = function (data) {
+                log.append('<li>' + data.replace(/\n/g, '<br />') + '</li>');
+                console.scrollTop(console[0].scrollHeight);
+            };
+
+            $.connection.hub.start();
+
+            $('#run-data-import, #cancel-data-import').submit(function () {
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'post',
+                    dataType: 'json',
+                    data: $(this).serialize(),
+                    success: function (data) {
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+}
+<section class="console">
+    <ul class="log">
+        @foreach (var line in Model)
+        {
+            <li>@line</li>
+        }
+    </ul>
+</section>

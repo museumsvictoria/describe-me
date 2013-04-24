@@ -1,0 +1,23 @@
+﻿@model AccountManageViewModel
+@{
+    ViewBag.Title = "Manage your account";
+}
+
+<section class="box login-confirm">
+    <div class="sub-box">
+        <h2>Manage your account</h2>
+        @using (Html.BeginForm("Manage", "Account"))
+        {            
+            @Html.AntiForgeryToken()
+            <fieldset>
+                <legend>You can update your user name if needed.</legend>
+                @Html.LabelFor(m => m.UserName, "New user name")
+                <div class="input-field">                    
+                    @Html.TextBoxFor(m => m.UserName)
+                </div>
+                @Html.ValidationMessageFor(m => m.UserName)
+                <input class="input" type="submit" value="Update" />
+            </fieldset>
+        }        
+    </div>
+</section>

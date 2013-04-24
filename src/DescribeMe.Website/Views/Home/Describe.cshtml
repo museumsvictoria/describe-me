@@ -1,0 +1,197 @@
+﻿@model ImageViewModel
+
+@{
+    ViewBag.Title = "Describe Me";
+}
+
+@section scripts
+{    
+    <script type="text/javascript">
+        $(document).ready(function () {           
+            $('#tags').autocomplete({
+                source: function (request, response) {
+                    $.post('/home/filtertags', {
+                        term: request.term
+                    }, response);
+                },
+                focus: function( event, ui ) {
+                    $("#tags").val(ui.item.Tag);
+                    return false;
+                },
+                select: function(event, ui) {
+                    $(location).attr('href', '/describe?tag=' + ui.item.Tag);
+                },
+                position: {
+                    offset: '0 15'
+                }
+            }).data('autocomplete')._renderItem = function (ul, item) {
+		        return $('<li></li>')
+				    .data('item.autocomplete', item)
+				    .append('<a>' + item.Tag + ' x ' + item.Count + '</a>')
+				    .appendTo(ul);
+		    };
+        });        
+    </script>
+}
+
+@if (Model.Image != null)
+{    
+    <section class="box image clearfix">
+        <h1>@Model.Image.Title</h1>
+        <img src="@Model.Image.Filename" alt=""/>
+    </section>
+    
+    <section class="box describe clearfix">
+        @using (Html.BeginForm("Describe", "Home", new { tag = Model.Tag, id = Model.Image.Id }))
+        {
+            @Html.AntiForgeryToken()
+            <p class="hint">What do you see? Refer to the text if you’re stuck. Tell us in three to seven words.</p>
+            @Html.ActionLink("Show me some examples", "examples", "home", null, new { @class = "example-link"})
+            <div class="textarea">
+                @Html.TextArea("UserAltDescription", Model.Image.UserAltDescription, 1, 1, null)                                
+            </div>
+            @Html.ValidationMessage("UserAltDescription")
+            <input class="input submit" type="submit" value="Submit" />            
+        }
+        <a class="input skip" href="@Url.Action("Describe", "Home", new { tag = Model.Tag })">Skip image</a>
+    </section>
+    
+    if (!string.IsNullOrWhiteSpace(Model.Tag)) {
+    <section class="box tag-active clearfix">
+        <h4>Images filtered by tag</h4>
+        <a class="tag-remove clearfix" href="@Url.Action("Describe", "Home")">
+            <span class="cross"><img src="/assets/icon-tag-cross.png" alt="cross"/></span>
+            <span class="text">@Model.Tag</span>
+        </a>        
+    </section>
+    }
+
+    <section class="box details clearfix">
+        <div class="third">           
+            @if (Model.Image.Tags.Any())
+            {
+                <div class="field">
+                    <h4>Tags</h4>
+                    @foreach (var tag in Model.Image.Tags)
+                    {
+                        <a class="tag" href="@Url.Action("Describe", "Home", new { tag = tag })">@tag</a>
+                    }
+                </div>
+            } 
+            <div class="tag-search">
+                <h4>Type to find other tags</h4>
+                <div class="wrapper">
+                    <input id="tags" />
+                </div>
+            </div>
+            
+            @if (!string.IsNullOrWhiteSpace(Model.Image.ImageIrn))
+            {
+                <div class="field">
+                    <h4>Image Irn</h4>
+                    <p>@Model.Image.ImageIrn</p>
+                </div>
+            }    
+            @if (!string.IsNullOrWhiteSpace(Model.Image.CatalogueIrn))
+            {
+                <div class="field">
+                    <h4>Catalogue Irn</h4>
+                    <p>@Model.Image.CatalogueIrn</p>
+                </div>
+            }    
+            @if (!string.IsNullOrWhiteSpace(Model.Image.RegistrationNumber))
+            {
+                <div class="field">
+                    <h4>Registration Number</h4>
+                    <p>@Model.Image.RegistrationNumber</p>
+                </div>
+            } 
+            @if (!string.IsNullOrWhiteSpace(Model.Image.Discipline))
+            {
+                <div class="field">
+                    <h4>Discipline</h4>
+                    <p>@Model.Image.Discipline</p>
+                </div>
+            }     
+            @if (!string.IsNullOrWhiteSpace(Model.Image.Category))
+            {
+                <div class="field">
+                    <h4>Category</h4>
+                    <p>@Model.Image.Category</p>
+                </div>
+            }     
+            @if (!string.IsNullOrWhiteSpace(Model.Image.Type))
+            {
+                <div class="field">
+                    <h4>Type</h4>
+                    <p>@Model.Image.Type</p>
+                </div>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Image.PrimaryClassification))
+            {
+                <div class="field">
+                    <h4>Primary Classification</h4>
+                    <p>@Model.Image.PrimaryClassification.ToTitleCase()</p>                
+                </div>
+            }   
+            @if (!string.IsNullOrWhiteSpace(Model.Image.SecondaryClassification))
+            {
+                <div class="field">
+                    <h4>Secondary Classification</h4>
+                    <p>@Model.Image.SecondaryClassification.ToTitleCase()</p>
+                </div>
+            }   
+            @if (!string.IsNullOrWhiteSpace(Model.Image.TertiaryClassification))
+            {
+                <div class="field">
+                    <h4>Tertiary Classification</h4>
+                    <p>@Model.Image.TertiaryClassification.ToTitleCase()</p>
+                </div>
+            }              
+        </div>
+        <div class="twothird">
+            @if (!string.IsNullOrWhiteSpace(Model.Image.Summary))
+            {
+                <div class="field">
+                    <h4>Summary</h4>
+                    <p>@Model.Image.Summary</p>
+                </div>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Image.Significance))
+            {
+                <div class="field">
+                    <h4>Significance</h4>
+                    <p>@Model.Image.Significance</p>
+                </div>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Image.Description))
+            {
+                <div class="field">
+                    <h4>Description</h4>
+                    <p>@Model.Image.Description</p>
+                </div>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Image.ImageTitle))
+            {
+                <div class="field">
+                    <h4>Image Title</h4>
+                    <p>@Model.Image.ImageTitle</p>
+                </div>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Image.ImageDescription))
+            {
+                <div class="field">
+                    <h4>Image Description</h4>
+                    <p>@Model.Image.ImageDescription</p>
+                </div>
+            }            
+        </div>
+    </section>
+}
+else
+{
+    <section class="message">
+        <img src="/assets/image-kids-smiling.jpg" alt="Three People Dressed as Pigs on a Float." width="960" />
+        <div class="speech-bubble red"><span>No images to describe.</span></div>
+    </section>
+}

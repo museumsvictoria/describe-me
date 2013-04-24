@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>@ViewBag.Title</title>
+
+    <meta name="description" content=""/>
+	<meta name="author" content="humans.txt"/>
+    <meta name="viewport" content="width=device-width"/>
+    @Styles.Render("~/css/css")
+    @Scripts.Render("~/js/modernizr")
+    <script type="text/javascript">
+        (function () {
+            var config = {
+                kitId: 'mas1voq',
+                scriptTimeout: 3000
+            };
+            var h = document.getElementsByTagName('html')[0];
+            h.className += ' wf-loading';
+            var t = setTimeout(function () {
+                h.className = h.className.replace(/(\s|^)wf-loading(\s|$)/g, ' ');
+                h.className += ' wf-inactive';
+            }, config.scriptTimeout);
+            var d = false;
+            var tk = document.createElement('script');
+            tk.src = '//use.typekit.net/' + config.kitId + '.js';
+            tk.type = 'text/javascript';
+            tk.async = 'true';
+            tk.onload = tk.onreadystatechange = function () {
+                var rs = this.readyState;
+                if (d || rs && rs != 'complete' && rs != 'loaded') return;
+                d = true;
+                clearTimeout(t);
+                try { Typekit.load(config); } catch (e) { }
+            };
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(tk, s);
+        })();
+    </script>    
+</head>
+<body>
+    <div id="admin">
+        <header>
+            <h1>
+                <a href="@Url.Action("index", "home")">
+                    <img src="/assets/logo-describeme.png" alt="Describe Me"/>
+                </a>
+            </h1>
+            @using (Html.BeginForm("RunDataImport", "Admin", FormMethod.Post, new { id = "run-data-import" }))
+            {
+                @Html.AntiForgeryToken()
+                <input class="input" type="submit" value="RunDataImport" />
+            }
+            @using (Html.BeginForm("CancelDataImport", "Admin", FormMethod.Post, new { id = "cancel-data-import" }))
+            {
+                @Html.AntiForgeryToken()
+                <input class="input" type="submit" value="CancelDataImport" />
+            }
+            <a class="input" href="@Url.Action("review", "home")">Review Images</a>
+        </header>
+
+        @RenderBody()        
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/jquery/jquery-1.7.2.min.js"><\/script>')</script>
+    <script>if (window.location.hash == '#_=_') window.location.hash = '';</script>
+    @Scripts.Render("~/js/jslib")
+    @RenderSection("scripts", false)
+    <script src="/signalr/hubs" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-11442629-2']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</body>
+</html>

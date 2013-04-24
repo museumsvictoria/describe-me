@@ -1,0 +1,23 @@
+﻿@model StatisticsViewModel
+@if (Html.ViewContext.ParentActionViewContext.RouteData.GetRequiredString("action").ToLower() != "review")
+{
+    <section class="progress-bar describe">
+        <div class="wrapper">  
+            <div class="image-count" style="left: @Model.DescribedImageCountAsPercentage%"><span id="desc-count">@Model.DescribedImageCount</span> of <span id="total-count">@Model.TotalImageCount</span> images described</div>
+            <div class="bar">
+                <div class="progress" style="width: @Model.DescribedImageCountAsPercentage%"></div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <section class="progress-bar review">
+        <div class="wrapper">            
+            <div class="image-count" style="left: @Model.ApprovedImageCountAsPercentage%"><span id="desc-count">@Model.ApprovedImageCount</span> of <span id="total-count">@Model.TotalReviewImageCount</span> contributions reviewed</div>
+            <div class="bar">
+                <div class="progress" style="width: @Model.ApprovedImageCountAsPercentage%"></div>
+            </div>    
+        </div>
+    </section>                
+}

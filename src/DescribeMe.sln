@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DescribeMe.Core", "DescribeMe.Core\DescribeMe.Core.csproj", "{F5F72EF6-563F-4BFC-A51C-975AD66A754A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DescribeMe.Web", "DescribeMe.Web\DescribeMe.Web.csproj", "{BAC7C398-F686-45FC-863F-1C7FF33D2A97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DescribeMe.Website", "DescribeMe.Website\DescribeMe.Website.csproj", "{03F2A3FF-EF42-4709-AEA2-9DFA0941FB19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0700BAEB-59CA-42EA-8B64-EE1105FA670F}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "env", "env", "{D77EC8B5-767E-4B58-8A62-9445FD4FD5E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DescribeMe.Import", "DescribeMe.Import\DescribeMe.Import.csproj", "{CC6E5D54-407B-4D0A-BBF2-F06C133F6B37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "prod", "prod", "{F67BEA94-6D2D-4213-9F1C-B9F4F52B76BF}"
+	ProjectSection(SolutionItems) = preProject
+		..\env\prod\DeployToProd.bat = ..\env\prod\DeployToProd.bat
+		..\env\prod\DescribeMe.Import.exe.config = ..\env\prod\DescribeMe.Import.exe.config
+		..\env\prod\Web.config = ..\env\prod\Web.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stage", "stage", "{7B9987F6-66C5-4FE7-90EE-FBF9D8A8CC23}"
+	ProjectSection(SolutionItems) = preProject
+		..\env\stage\DeployToStage.bat = ..\env\stage\DeployToStage.bat
+		..\env\stage\DescribeMe.Import.exe.config = ..\env\stage\DescribeMe.Import.exe.config
+		..\env\stage\Web.config = ..\env\stage\Web.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs:8080/tfs/mv
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DescribeMe.Core\\DescribeMe.Core.csproj
+		SccProjectName1 = DescribeMe.Core
+		SccLocalPath1 = DescribeMe.Core
+		SccProjectUniqueName2 = DescribeMe.Web\\DescribeMe.Web.csproj
+		SccProjectName2 = DescribeMe.Web
+		SccLocalPath2 = DescribeMe.Web
+		SccProjectUniqueName3 = DescribeMe.Website\\DescribeMe.Website.csproj
+		SccProjectName3 = DescribeMe.Website
+		SccLocalPath3 = DescribeMe.Website
+		SccProjectUniqueName4 = DescribeMe.Import\\DescribeMe.Import.csproj
+		SccProjectName4 = DescribeMe.Import
+		SccLocalPath4 = DescribeMe.Import
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5F72EF6-563F-4BFC-A51C-975AD66A754A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F72EF6-563F-4BFC-A51C-975AD66A754A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F72EF6-563F-4BFC-A51C-975AD66A754A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F72EF6-563F-4BFC-A51C-975AD66A754A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC7C398-F686-45FC-863F-1C7FF33D2A97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC7C398-F686-45FC-863F-1C7FF33D2A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC7C398-F686-45FC-863F-1C7FF33D2A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC7C398-F686-45FC-863F-1C7FF33D2A97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03F2A3FF-EF42-4709-AEA2-9DFA0941FB19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03F2A3FF-EF42-4709-AEA2-9DFA0941FB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03F2A3FF-EF42-4709-AEA2-9DFA0941FB19}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{03F2A3FF-EF42-4709-AEA2-9DFA0941FB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03F2A3FF-EF42-4709-AEA2-9DFA0941FB19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC6E5D54-407B-4D0A-BBF2-F06C133F6B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC6E5D54-407B-4D0A-BBF2-F06C133F6B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC6E5D54-407B-4D0A-BBF2-F06C133F6B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC6E5D54-407B-4D0A-BBF2-F06C133F6B37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F67BEA94-6D2D-4213-9F1C-B9F4F52B76BF} = {D77EC8B5-767E-4B58-8A62-9445FD4FD5E6}
+		{7B9987F6-66C5-4FE7-90EE-FBF9D8A8CC23} = {D77EC8B5-767E-4B58-8A62-9445FD4FD5E6}
+	EndGlobalSection
+EndGlobal

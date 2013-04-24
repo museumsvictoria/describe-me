@@ -1,0 +1,30 @@
+﻿@model AccountExternalLoginConfirmationViewModel
+
+@{
+    ViewBag.Title = "Login Confirmation";
+}
+
+<section class="box login-confirm">
+    <div class="sub-box">
+        <h2>Associate your @Model.ProviderDisplayName account <span class="@Model.ProviderDisplayName.ToLower() button"></span></h2>
+        @using (Html.BeginForm("ExternalLoginConfirmation", "Account")) 
+        {
+            @Html.AntiForgeryToken()
+            <fieldset>
+                <legend>Login Confirmation</legend>
+                <p>
+                    You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.<br/>
+                    Please enter a user name below for use on Describe Me and click the Register button to finish logging in.
+                </p>
+                @Html.LabelFor(m => m.UserName)
+                <div class="input-field">                    
+                    @Html.TextBoxFor(m => m.UserName)
+                </div>
+                @Html.ValidationMessageFor(m => m.UserName)
+                @Html.HiddenFor(m => m.ExternalLoginData)
+                @Html.HiddenFor(m => m.ReturnUrl)
+                <input class="input" type="submit" value="Register" />
+            </fieldset>
+        }        
+    </div>
+</section>

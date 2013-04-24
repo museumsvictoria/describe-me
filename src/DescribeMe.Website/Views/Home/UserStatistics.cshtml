@@ -1,0 +1,6 @@
+﻿@model IList<DescribeMe.Core.Indexes.Images_DescribedByCount.ReduceResult>
+
+@if (Model.Any())
+{
+    @:(@Model.First().Count images described)
+}

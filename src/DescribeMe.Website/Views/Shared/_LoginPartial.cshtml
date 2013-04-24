@@ -1,0 +1,42 @@
+﻿@if(User.Identity.IsAuthenticated)
+{
+    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "login" }))
+    {
+        @Html.AntiForgeryToken()
+        <span>
+            Hello @Html.ActionLink(User.Identity.Name, "manage", "account") @{ Html.RenderAction("UserStatistics", "Home"); }
+        </span>
+        if (User.IsInRole("administrator"))
+        {
+            <a class="input" href="@Url.Action("index", "admin")">Admin section</a>
+        }
+        if (User.IsInRole("moderator"))
+        {
+            if (Html.ViewContext.RouteData.GetRequiredString("action").ToLower() != "review")
+            {
+                <a class="input" href="@Url.Action("review", "home")">Review alt-text</a>
+            }
+            else
+            {
+                <a class="input" href="@Url.Action("describe", "home")">Describe images</a>
+            }
+        }
+        
+        <input class="input logout" type="submit" value="Logout" />
+    }
+}
+
+@if (!User.Identity.IsAuthenticated && OAuthWebSecurity.RegisteredClientData.Any() && ViewBag.HideLogin == null)
+{
+    using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post, new { id = "login" }))
+    {
+        @Html.AntiForgeryToken()
+        <span>Login using</span>
+        <div class="buttons">
+        @foreach (AuthenticationClientData provider in OAuthWebSecurity.RegisteredClientData)
+        {
+            <input class="button @provider.AuthenticationClient.ProviderName" type="submit" name="provider" value="@provider.AuthenticationClient.ProviderName" title="Log in using your @provider.DisplayName account" />
+        }
+        </div>
+    }
+}

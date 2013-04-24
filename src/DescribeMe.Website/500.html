@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>500 Internal Server Error</title>
+
+    <meta name="description" content="401 Unauthorized"/>
+    <meta name="viewport" content="width=device-width"/>
+    <script type="text/javascript">
+        (function () {
+            var config = {
+                kitId: 'mas1voq',
+                scriptTimeout: 3000
+            };
+            var h = document.getElementsByTagName('html')[0];
+            h.className += ' wf-loading';
+            var t = setTimeout(function () {
+                h.className = h.className.replace(/(\s|^)wf-loading(\s|$)/g, ' ');
+                h.className += ' wf-inactive';
+            }, config.scriptTimeout);
+            var d = false;
+            var tk = document.createElement('script');
+            tk.src = '//use.typekit.net/' + config.kitId + '.js';
+            tk.type = 'text/javascript';
+            tk.async = 'true';
+            tk.onload = tk.onreadystatechange = function () {
+                var rs = this.readyState;
+                if (d || rs && rs != 'complete' && rs != 'loaded') return;
+                d = true;
+                clearTimeout(t);
+                try { Typekit.load(config); } catch (e) { }
+            };
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(tk, s);
+        })();
+    </script>
+    <style>
+        body { background:url('/assets/bg_home.jpg') #fff; font-family: "myriad-pro",sans-serif; color: #7a7974; font-size: 14px; margin: 0; }
+        .clearfix:before, .clearfix:after { content: ""; display: table; }
+        .clearfix:after { clear: both; }
+        .clearfix { *zoom: 1; }
+        img { border: 0; display: block; vertical-align: middle; }
+        #main { margin: 0 auto; width: 960px; visibility: visible; /* Old IE */ -webkit-transition: opacity 0.4s ease-in-out; -moz-transition: opacity 0.4s ease-in-out; transition: opacity 0.4s ease-in-out; }
+        header  {background: #343737; height: 45px; border-bottom: 1px solid #fff; }
+        header h1 { margin: 0 34px 0 34px; padding: 0; height: 22px; display: inline-block; }
+        header img {padding: 10px 0 0;}
+        .message { position: relative; }
+        .speech-bubble { position: absolute; right: 70px; top: 70px; width: 154px; height: 79px; padding: 25px; background: url('/assets/image-speech-bubble-red.png') no-repeat; }
+        .speech-bubble span { width: 160px; height: 60px; display: table-cell; vertical-align: middle; text-align: center; font-size: 21px; color: #fff; text-shadow: 0 -1px 1px #89251f; }
+        footer { background: #343737; padding: 25px 34px; }
+        footer .rights-link { float: right; color: #c2e3e5; text-decoration: none; font-weight: 400; font-size: 15px; margin: 15px 0 0; }
+        footer .rights-link:visited, footer .rights-link:active { color: #c2e3e5; }
+        footer .rights-link:hover { color: #bef4f7; }
+        footer a { float: left; margin:0 30px 0 0; }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <header>
+            <h1>
+                <a href="/">
+                    <img src="/assets/logo-describeme.png" alt="Describe Me"/>
+                </a>
+            </h1>
+        </header>
+        
+        <section class="message">
+            <img src="/assets/image-weirdos.jpg" alt="Three People Dressed as Pigs on a Float." width="960" />
+            <div class="speech-bubble"><span>Something broke.</span></div>
+        </section>
+
+        <footer class="clearfix">
+            <a href="http://museumvictoria.com.au/">
+                <img src="/assets/logo-mv.png" alt="Museum Victoria"/>
+            </a>
+            <a href="http://www.vic.gov.au/">
+                <img src="/assets/logo-govt.png" alt="State Government of Victoria"/>
+            </a>
+            <a class="rights-link" href="http://museumvictoria.com.au/footer-links/rights/">Rights</a>
+        </footer>
+    </div>
+</body>
+</html>

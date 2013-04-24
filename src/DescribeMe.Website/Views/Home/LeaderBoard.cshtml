@@ -1,0 +1,25 @@
+﻿@model IList<DescribeMe.Core.Indexes.Images_DescribedByCount.ReduceResult>
+<div class="leaderboard">
+    <h3>Top Describers</h3>
+    <div class="wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Described</th>
+                </tr>
+            </thead>
+            <tbody>            
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td>@((i + 1).ToString("D2"))</td>
+                        <td class="highlight">@Model[i].UserName</td>
+                        <td class="highlight">@Model[i].Count</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
