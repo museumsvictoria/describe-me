@@ -14,43 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0700BA
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "env", "env", "{D77EC8B5-767E-4B58-8A62-9445FD4FD5E6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DescribeMe.Import", "DescribeMe.Import\DescribeMe.Import.csproj", "{CC6E5D54-407B-4D0A-BBF2-F06C133F6B37}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "prod", "prod", "{F67BEA94-6D2D-4213-9F1C-B9F4F52B76BF}"
-	ProjectSection(SolutionItems) = preProject
-		..\env\prod\DeployToProd.bat = ..\env\prod\DeployToProd.bat
-		..\env\prod\DescribeMe.Import.exe.config = ..\env\prod\DescribeMe.Import.exe.config
-		..\env\prod\Web.config = ..\env\prod\Web.config
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stage", "stage", "{7B9987F6-66C5-4FE7-90EE-FBF9D8A8CC23}"
-	ProjectSection(SolutionItems) = preProject
-		..\env\stage\DeployToStage.bat = ..\env\stage\DeployToStage.bat
-		..\env\stage\DescribeMe.Import.exe.config = ..\env\stage\DescribeMe.Import.exe.config
-		..\env\stage\Web.config = ..\env\stage\Web.config
-	EndProjectSection
-EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://tfs:8080/tfs/mv
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = DescribeMe.Core\\DescribeMe.Core.csproj
-		SccProjectName1 = DescribeMe.Core
-		SccLocalPath1 = DescribeMe.Core
-		SccProjectUniqueName2 = DescribeMe.Web\\DescribeMe.Web.csproj
-		SccProjectName2 = DescribeMe.Web
-		SccLocalPath2 = DescribeMe.Web
-		SccProjectUniqueName3 = DescribeMe.Website\\DescribeMe.Website.csproj
-		SccProjectName3 = DescribeMe.Website
-		SccLocalPath3 = DescribeMe.Website
-		SccProjectUniqueName4 = DescribeMe.Import\\DescribeMe.Import.csproj
-		SccProjectName4 = DescribeMe.Import
-		SccLocalPath4 = DescribeMe.Import
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -76,9 +42,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{F67BEA94-6D2D-4213-9F1C-B9F4F52B76BF} = {D77EC8B5-767E-4B58-8A62-9445FD4FD5E6}
-		{7B9987F6-66C5-4FE7-90EE-FBF9D8A8CC23} = {D77EC8B5-767E-4B58-8A62-9445FD4FD5E6}
 	EndGlobalSection
 EndGlobal
