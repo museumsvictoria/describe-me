@@ -79,14 +79,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\ApplicationRunDataImportCommandHandler.cs" />
@@ -170,6 +167,7 @@
     <Compile Include="Services\IImageService.cs" />
     <Compile Include="Factories\ImageFactory.cs" />
     <Compile Include="Utilities\RavenIdResolver.cs" />
+    <Compile Include="Validators\UniqueUserNameAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

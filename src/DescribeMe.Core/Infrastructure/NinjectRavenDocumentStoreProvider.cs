@@ -42,9 +42,6 @@ namespace DescribeMe.Core.Infrastructure
             // Add our indexes
             IndexCreation.CreateIndexes(typeof(Images_Statistics).Assembly, documentStore);
 
-            //Uncomment for debug purposes only
-            //Raven.Client.MvcIntegration.RavenProfiler.InitializeFor(documentStore);
-
             return documentStore;
         }
     }

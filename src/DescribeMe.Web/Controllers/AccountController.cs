@@ -82,38 +82,26 @@ namespace DescribeMe.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                // Insert a new user into the database
-                var user = _documentSession
-                    .Query<User, Users_ByName>()
-                    .Where(x => x.Name == accountExternalLoginConfirmationInput.UserName)
-                    .Customize(x => x.WaitForNonStaleResultsAsOfNow(TimeSpan.FromSeconds(Constants.WaitForNonStaleResultsTimeout)))
-                    .FirstOrDefault();
-
                 // User is new, create user and add to db
-                if(user == null)
-                {
-                    var newUser = new User(
-                        providerUserId,
-                        provider,
-                        accountExternalLoginConfirmationInput.UserName);
+                var newUser = new User(
+                    providerUserId,
+                    provider,
+                    accountExternalLoginConfirmationInput.UserName);
 
-                    newUser.AddRole(_documentSession.Load<Role>("roles/user"));
+                newUser.AddRole(_documentSession.Load<Role>("roles/user"));
 
-                    _documentSession.Store(newUser);
-                    _documentSession.SaveChanges();
+                _documentSession.Store(newUser);
+                _documentSession.SaveChanges();
 
-                    // Log user in
-                    // HACK: Wait a tiny bit to ensure user is in database, because oauthwebsecurity NEEDS to check user exists first to add the forms authentication cookie.
-                    var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-                    stopwatch.Start();
-                    while (stopwatch.ElapsedMilliseconds < 1000) { }
+                // Log user in
+                // HACK: Wait a tiny bit to ensure user is in database, because oauthwebsecurity NEEDS to check user exists first to add the forms authentication cookie.
+                var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+                stopwatch.Start();
+                while (stopwatch.ElapsedMilliseconds < 1000) { }
 
-                    OAuthWebSecurity.Login(newUser.Provider, newUser.ProviderUserId, createPersistentCookie: true);
+                OAuthWebSecurity.Login(newUser.Provider, newUser.ProviderUserId, createPersistentCookie: true);
                     
-                    return RedirectToLocal(accountExternalLoginConfirmationInput.ReturnUrl);
-                }
-                
-                ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                return RedirectToLocal(accountExternalLoginConfirmationInput.ReturnUrl);
             }
 
             return View(new AccountExternalLoginConfirmationViewModel

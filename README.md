@@ -3,7 +3,7 @@
 
 ## What Technology does it use?
 * ASP.Net Framework 4.5 (MVC4).
-* RavenDb v1.0 (build 960) for persistence.
+* RavenDb v2.0 (build 2360) for persistence.
 * SignalR v0.52 for client messaging.
 * IMu Client for connecting to EMu (Museum Collections Management System).
 * Ninject for IoC.
