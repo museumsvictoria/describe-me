@@ -20,11 +20,6 @@ namespace DescribeMe.Core.EventHandlers
 
         public void Handle(UserUpdatedEvent @event)
         {
-            foreach (var staleIndex in _documentStore.DatabaseCommands.GetStatistics().StaleIndexes)
-            {
-                log.Debug("stale Index found {0}", staleIndex);
-            }
-
             _documentStore
                 .WaitForIndexingToFinish(new[]
                 {

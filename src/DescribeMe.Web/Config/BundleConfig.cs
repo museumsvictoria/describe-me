@@ -8,7 +8,10 @@ namespace DescribeMe.Web.Config
         {
             var scriptBundle = new ScriptBundle("~/js/jslib")
                 .IncludeDirectory("~/js", "*.js", false)
-                .IncludeDirectory("~/js/lib", "jquery*.js", false);
+                .Include(
+                    "~/js/lib/jquery-ui-1.8.23.custom.min.js",
+                    "~/js/lib/jquery.signalR.js"
+                    );
             bundles.Add(scriptBundle);
 
             var modernizrBundle = new ScriptBundle("~/js/modernizr")
