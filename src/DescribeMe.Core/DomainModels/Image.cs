@@ -98,8 +98,6 @@ namespace DescribeMe.Core.DomainModels
 
             UserAltDescription = userAltDescription;
             DescribedByUser = user;
-
-            ApplyEvent(new ImageCountUpdatedEvent(this));
         }
 
         public void ApproveImage(string userAltDescription)
@@ -108,16 +106,12 @@ namespace DescribeMe.Core.DomainModels
 
             UserAltDescription = userAltDescription;
             Approved = true;
-
-            ApplyEvent(new ImageCountUpdatedEvent(this));
         }
 
         public void RejectImage()
         {
             UserAltDescription = null;
             DescribedByUser = null;
-
-            ApplyEvent(new ImageCountUpdatedEvent(this));
         }
 
         public void IncrementImageFetchAttempts()

@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DescribeMe.Core.DomainModels;
 using DescribeMe.Core.Indexes;
+using DescribeMe.Core.Services;
+using NLog;
 using Raven.Client;
+using Raven.Abstractions.Data;
 using DescribeMe.Core.Extensions;
 
 namespace DescribeMe.Core.Config
@@ -10,17 +14,21 @@ namespace DescribeMe.Core.Config
     public class ApplicationManager : IApplicationManager
     {
         private readonly IDocumentStore _documentStore;
+        private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
         private Application _application;
         private ICollection<Role> _roles;
         private readonly IConfigurationManager _configurationManager;
+        private readonly IStatisticsService _statisticsService;
 
         public ApplicationManager(
             IDocumentStore documentStore,
-            IConfigurationManager configurationManager)
+            IConfigurationManager configurationManager,
+            IStatisticsService statisticsService)
         {
             _documentStore = documentStore;
             _configurationManager = configurationManager;
+            _statisticsService = statisticsService;
         }
 
         public void SetupApplication()
@@ -49,10 +57,12 @@ namespace DescribeMe.Core.Config
 
                 AddAdmins(documentSession);
 
-                AddModerators(documentSession);
+                AddModerators(documentSession);                
 
                 documentSession.SaveChanges();
             }
+
+            RegisterChanges();
         }
 
         private void AddApplication(IDocumentSession documentSession)
@@ -126,6 +136,28 @@ namespace DescribeMe.Core.Config
             }
 
             documentSession.SaveChanges();
+        }
+
+        private void RegisterChanges()
+        {
+            _documentStore.Changes()
+                          .ForIndex("Images/Statistics")
+                          .Subscribe(change =>
+                              {                                  
+                                  if (change.Type == IndexChangeTypes.ReduceCompleted)
+                                  {
+                                      log.Debug("Sending Statistics update to clients");
+
+                                      using (var documentSession = _documentStore.OpenSession())
+                                      {
+                                          var statistics = documentSession
+                                              .Query<Images_Statistics.ReduceResult, Images_Statistics>()
+                                              .FirstOrDefault();
+                                          
+                                          _statisticsService.UpdateStatistics(statistics);
+                                      }
+                                  }
+                              });
         }
     }
 }
