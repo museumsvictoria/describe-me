@@ -117,6 +117,7 @@
     <Content Include="assets\image-weirdos.jpg" />
     <Content Include="assets\logo-describeme.png" />
     <Content Include="assets\logo-facebook.png" />
+    <Content Include="assets\logo-github.png" />
     <Content Include="assets\logo-google.png" />
     <Content Include="assets\logo-govt.png" />
     <Content Include="assets\logo-home-intro.png" />
