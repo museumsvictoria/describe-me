@@ -34,7 +34,8 @@ namespace DescribeMe.Import
             var messageBus = _kernal.Get<IMessageBus>();
 
             // Setup application
-            ServiceLocator.Current.GetInstance<IApplicationManager>().SetupApplication();
+            ServiceLocator.Current.GetInstance<IApplicationManager>()
+                .SetupApplication();
 
             // Perform Import
             messageBus.Send(new ApplicationRunDataImportCommand { DateRun = DateTime.Now });

@@ -4,6 +4,7 @@ using System.Linq;
 using DescribeMe.Core.DomainModels;
 using DescribeMe.Core.Indexes;
 using DescribeMe.Core.Services;
+using Microsoft.Practices.ServiceLocation;
 using NLog;
 using Raven.Client;
 using Raven.Abstractions.Data;
@@ -19,19 +20,16 @@ namespace DescribeMe.Core.Config
         private Application _application;
         private ICollection<Role> _roles;
         private readonly IConfigurationManager _configurationManager;
-        private readonly IStatisticsService _statisticsService;
 
         public ApplicationManager(
             IDocumentStore documentStore,
-            IConfigurationManager configurationManager,
-            IStatisticsService statisticsService)
+            IConfigurationManager configurationManager)
         {
             _documentStore = documentStore;
             _configurationManager = configurationManager;
-            _statisticsService = statisticsService;
         }
 
-        public void SetupApplication()
+        public ApplicationManager SetupApplication()
         {
             // Make sure that our users index is up to date or we may be inserting multiple admins/moderators.
             _documentStore.WaitForIndexingToFinish(new[]
@@ -62,7 +60,33 @@ namespace DescribeMe.Core.Config
                 documentSession.SaveChanges();
             }
 
-            RegisterChanges();
+            return this;
+        }
+
+        public ApplicationManager RegisterRavenWebsiteChanges()
+        {
+            var statisticsService = ServiceLocator.Current.GetInstance<IStatisticsService>();
+
+            _documentStore.Changes()
+                          .ForIndex("Images/Statistics")
+                          .Subscribe(change =>
+                          {
+                              if (change.Type == IndexChangeTypes.ReduceCompleted)
+                              {
+                                  using (var documentSession = _documentStore.OpenSession())
+                                  {
+                                      var statistics = documentSession
+                                          .Query<Images_Statistics.ReduceResult, Images_Statistics>()
+                                          .FirstOrDefault();
+
+                                      log.Debug("Sending Statistics update to clients, {0} of {1} images described", statistics.DescibedImageCount, statistics.UnDescibedImageCount);
+
+                                      statisticsService.UpdateStatistics(statistics);
+                                  }
+                              }
+                          });
+
+            return this;
         }
 
         private void AddApplication(IDocumentSession documentSession)
@@ -136,28 +160,6 @@ namespace DescribeMe.Core.Config
             }
 
             documentSession.SaveChanges();
-        }
-
-        private void RegisterChanges()
-        {
-            _documentStore.Changes()
-                          .ForIndex("Images/Statistics")
-                          .Subscribe(change =>
-                              {                                  
-                                  if (change.Type == IndexChangeTypes.ReduceCompleted)
-                                  {
-                                      log.Debug("Sending Statistics update to clients");
-
-                                      using (var documentSession = _documentStore.OpenSession())
-                                      {
-                                          var statistics = documentSession
-                                              .Query<Images_Statistics.ReduceResult, Images_Statistics>()
-                                              .FirstOrDefault();
-                                          
-                                          _statisticsService.UpdateStatistics(statistics);
-                                      }
-                                  }
-                              });
         }
     }
 }
