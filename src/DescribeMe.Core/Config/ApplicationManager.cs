@@ -75,13 +75,18 @@ namespace DescribeMe.Core.Config
                               {
                                   using (var documentSession = _documentStore.OpenSession())
                                   {
+                                      RavenQueryStatistics stats;
                                       var statistics = documentSession
                                           .Query<Images_Statistics.ReduceResult, Images_Statistics>()
+                                          .Statistics(out stats)
                                           .FirstOrDefault();
+                                      
+                                      if (!stats.IsStale)
+                                      {
+                                          log.Debug("Sending Statistics update to clients, {0} of {1} images described", statistics.DescibedImageCount, statistics.UnDescibedImageCount);
 
-                                      log.Debug("Sending Statistics update to clients, {0} of {1} images described", statistics.DescibedImageCount, statistics.UnDescibedImageCount);
-
-                                      statisticsService.UpdateStatistics(statistics);
+                                          statisticsService.UpdateStatistics(statistics);
+                                      }
                                   }
                               }
                           });

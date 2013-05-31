@@ -55,7 +55,7 @@ namespace DescribeMe.Core.Factories
             string significance = map.GetString("SubHistoryTechSignificance");
             string description = map.GetString(!string.IsNullOrWhiteSpace((string)map["Con1Description"]) ? "Con1Description" : "DesPhysicalDescription");
 
-            var tags = map.GetStrings("SubSubjects_tab").Select(x => _slugFactory.MakeSlug(x)).ToArray();
+            var tags = map.GetStrings("SubSubjects_tab").Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => _slugFactory.MakeSlug(x)).ToArray();
 
             // Multimedia, skip MM records that already contain an image description, and numismatics records.
             if ((type != "Image" ||
