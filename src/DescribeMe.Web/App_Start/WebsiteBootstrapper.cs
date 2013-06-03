@@ -109,9 +109,7 @@ namespace DescribeMe.Web.App_Start
             AuthConfig.RegisterAuth();
 
             // Perform Application setup
-            ServiceLocator.Current.GetInstance<IApplicationManager>()
-                .SetupApplication()
-                .RegisterRavenWebsiteChanges();
+            ServiceLocator.Current.GetInstance<IApplicationManager>().SetupApplication();
 
             BundleTable.EnableOptimizations = true;
         }

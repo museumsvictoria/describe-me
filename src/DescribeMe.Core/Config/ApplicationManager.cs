@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DescribeMe.Core.DomainModels;
 using DescribeMe.Core.Indexes;
-using DescribeMe.Core.Services;
-using Microsoft.Practices.ServiceLocation;
-using NLog;
 using Raven.Client;
-using Raven.Abstractions.Data;
 using DescribeMe.Core.Extensions;
 
 namespace DescribeMe.Core.Config
 {
     public class ApplicationManager : IApplicationManager
     {
-        private readonly IDocumentStore _documentStore;
-        private static readonly Logger log = LogManager.GetCurrentClassLogger();
+        private readonly IDocumentStore _documentStore;        
 
         private Application _application;
         private ICollection<Role> _roles;
@@ -29,7 +23,7 @@ namespace DescribeMe.Core.Config
             _configurationManager = configurationManager;
         }
 
-        public ApplicationManager SetupApplication()
+        public void SetupApplication()
         {
             // Make sure that our users index is up to date or we may be inserting multiple admins/moderators.
             _documentStore.WaitForIndexingToFinish(new[]
@@ -59,39 +53,6 @@ namespace DescribeMe.Core.Config
 
                 documentSession.SaveChanges();
             }
-
-            return this;
-        }
-
-        public ApplicationManager RegisterRavenWebsiteChanges()
-        {
-            var statisticsService = ServiceLocator.Current.GetInstance<IStatisticsService>();
-
-            _documentStore.Changes()
-                          .ForIndex("Images/Statistics")
-                          .Subscribe(change =>
-                          {
-                              if (change.Type == IndexChangeTypes.ReduceCompleted)
-                              {
-                                  using (var documentSession = _documentStore.OpenSession())
-                                  {
-                                      RavenQueryStatistics stats;
-                                      var statistics = documentSession
-                                          .Query<Images_Statistics.ReduceResult, Images_Statistics>()
-                                          .Statistics(out stats)
-                                          .FirstOrDefault();
-                                      
-                                      if (!stats.IsStale)
-                                      {
-                                          log.Debug("Sending Statistics update to clients, {0} of {1} images described", statistics.DescibedImageCount, statistics.UnDescibedImageCount);
-
-                                          statisticsService.UpdateStatistics(statistics);
-                                      }
-                                  }
-                              }
-                          });
-
-            return this;
         }
 
         private void AddApplication(IDocumentSession documentSession)

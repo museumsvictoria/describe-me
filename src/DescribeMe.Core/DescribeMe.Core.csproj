@@ -84,18 +84,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Reactive.Core">
-      <HintPath>..\packages\Rx-Core.2.1.30214.0\lib\Net45\System.Reactive.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces">
-      <HintPath>..\packages\Rx-Interfaces.2.1.30214.0\lib\Net45\System.Reactive.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Linq">
-      <HintPath>..\packages\Rx-Linq.2.1.30214.0\lib\Net45\System.Reactive.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices">
-      <HintPath>..\packages\Rx-PlatformServices.2.1.30214.0\lib\Net45\System.Reactive.PlatformServices.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\ApplicationRunDataImportCommandHandler.cs" />
@@ -142,6 +130,8 @@
     <Compile Include="Extensions\DocumentStoreExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Factories\DocumentStoreFactory.cs" />
+    <Compile Include="Factories\IDocumentStoreFactory.cs" />
     <Compile Include="Factories\IImagePathFactory.cs" />
     <Compile Include="Factories\ImagePathFactory.cs" />
     <Compile Include="Factories\SlugFactory.cs" />
@@ -168,7 +158,6 @@
     <Compile Include="Infrastructure\ICommand.cs" />
     <Compile Include="Infrastructure\IMessageBus.cs" />
     <Compile Include="DomainModels\Application.cs" />
-    <Compile Include="Infrastructure\NinjectRavenDocumentStoreProvider.cs" />
     <Compile Include="Infrastructure\NinjectRavenSessionProvider.cs" />
     <Compile Include="Infrastructure\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

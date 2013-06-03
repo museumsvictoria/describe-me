@@ -3,6 +3,7 @@ using DescribeMe.Core.Commands;
 using DescribeMe.Core.Config;
 using DescribeMe.Core.Infrastructure;
 using DescribeMe.Import.Config;
+using DescribeMe.Import.Infrastructure;
 using Microsoft.Practices.ServiceLocation;
 using Ninject;
 using Ninject.Extensions.Conventions;
@@ -34,8 +35,7 @@ namespace DescribeMe.Import
             var messageBus = _kernal.Get<IMessageBus>();
 
             // Setup application
-            ServiceLocator.Current.GetInstance<IApplicationManager>()
-                .SetupApplication();
+            ServiceLocator.Current.GetInstance<IApplicationManager>().SetupApplication();
 
             // Perform Import
             messageBus.Send(new ApplicationRunDataImportCommand { DateRun = DateTime.Now });

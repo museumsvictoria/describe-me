@@ -1,24 +1,23 @@
 ﻿using DescribeMe.Core.Config;
 using DescribeMe.Core.Indexes;
-using Ninject.Activation;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Extensions;
 using Raven.Client.Indexes;
 
-namespace DescribeMe.Core.Infrastructure
+namespace DescribeMe.Core.Factories
 {
-    public class NinjectRavenDocumentStoreProvider : Provider<IDocumentStore>
+    public class DocumentStoreFactory : IDocumentStoreFactory
     {
         private readonly IConfigurationManager _configurationManager;
-        
-        public NinjectRavenDocumentStoreProvider(
+
+        public DocumentStoreFactory(
             IConfigurationManager configurationManager)
         {
             _configurationManager = configurationManager;
         }
 
-        protected override IDocumentStore CreateInstance(IContext ctx)
+        public IDocumentStore MakeDocumentStore()
         {
             var documentStore = new DocumentStore
             {

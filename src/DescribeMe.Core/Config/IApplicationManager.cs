@@ -2,8 +2,6 @@
 {
     public interface IApplicationManager
     {
-        ApplicationManager SetupApplication();
-
-        ApplicationManager RegisterRavenWebsiteChanges();
+        void SetupApplication();
     }
 }
