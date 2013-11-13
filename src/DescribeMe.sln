@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DescribeMe.Core", "DescribeMe.Core\DescribeMe.Core.csproj", "{F5F72EF6-563F-4BFC-A51C-975AD66A754A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DescribeMe.Web", "DescribeMe.Web\DescribeMe.Web.csproj", "{BAC7C398-F686-45FC-863F-1C7FF33D2A97}"
@@ -26,6 +28,7 @@ Global
 		{F5F72EF6-563F-4BFC-A51C-975AD66A754A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5F72EF6-563F-4BFC-A51C-975AD66A754A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5F72EF6-563F-4BFC-A51C-975AD66A754A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F72EF6-563F-4BFC-A51C-975AD66A754A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{BAC7C398-F686-45FC-863F-1C7FF33D2A97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BAC7C398-F686-45FC-863F-1C7FF33D2A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAC7C398-F686-45FC-863F-1C7FF33D2A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
