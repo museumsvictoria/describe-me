@@ -81,7 +81,7 @@ namespace DescribeMe.Web.Controllers
             _messageBus.SendAsync(new ImageDescribeCommand
                 {
                     Id = homeDescribeInput.Id,
-                    UserAltDescription = homeDescribeInput.UserAltDescription,
+                    UserAltDescription = homeDescribeInput.UserAltDescription.Trim(),
                     User = _documentSession.Query<User, Users_ByName>().Where(x => x.Name == User.Identity.Name).FirstOrDefault()
                 });
 
@@ -144,7 +144,7 @@ namespace DescribeMe.Web.Controllers
             _messageBus.SendAsync(new ImageApproveCommand
             {
                 Id = homeApproveInput.Id,
-                UserAltDescription = homeApproveInput.UserAltDescription
+                UserAltDescription = homeApproveInput.UserAltDescription.Trim()
             });
 
             TempData["skipId"] = homeApproveInput.Id;
