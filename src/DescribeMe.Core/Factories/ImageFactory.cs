@@ -61,7 +61,7 @@ namespace DescribeMe.Core.Factories
             if ((type != "Image" ||
                 (type == "Image" &&
                 string.IsNullOrWhiteSpace((string)map["Con1Description"]) &&
-                map.GetMaps("images").Any(x => string.IsNullOrWhiteSpace(x.GetString("MulDescription")) && x.GetString("AdmPublishWebNoPassword") == "Yes"))) &&
+                map.GetMaps("images").Any(x => string.IsNullOrWhiteSpace(x.GetString("MulDescription")) && string.Equals(x.GetString("AdmPublishWebNoPassword"), "yes", StringComparison.OrdinalIgnoreCase)))) &&
                 discipline != "Numismatics")
             {
                 // Determine what images we are adding.  
@@ -73,7 +73,7 @@ namespace DescribeMe.Core.Factories
                                  x.GetString("MulIdentifier").EndsWith(".tif", StringComparison.OrdinalIgnoreCase) ||
                                  x.GetString("MulIdentifier").EndsWith(".tiff", StringComparison.OrdinalIgnoreCase))
                                 && !x.GetString("MulIdentifier").Contains("Graphic Warning.tiff")
-                                && x.GetString("AdmPublishWebNoPassword") != "No")
+                                && !string.Equals(x.GetString("AdmPublishWebNoPassword"), "no", StringComparison.OrdinalIgnoreCase))
                     .Select(x => new Image(
                                      x.GetString("irn"),
                                      catalogueIrn,
