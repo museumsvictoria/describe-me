@@ -17,8 +17,6 @@ namespace DescribeMe.Web.Config
             OAuthWebSecurity.RegisterFacebookClient(
                 appId: configurationManager.OauthClientKey("facebook"),
                 appSecret: configurationManager.OauthClientSecret("facebook"));
-
-            OAuthWebSecurity.RegisterGoogleClient();
         }
     }
 }
