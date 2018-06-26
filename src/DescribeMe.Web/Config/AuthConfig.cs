@@ -13,10 +13,6 @@ namespace DescribeMe.Web.Config
             OAuthWebSecurity.RegisterTwitterClient(
                 consumerKey: configurationManager.OauthClientKey("twitter"),
                 consumerSecret: configurationManager.OauthClientSecret("twitter"));
-            
-            OAuthWebSecurity.RegisterFacebookClient(
-                appId: configurationManager.OauthClientKey("facebook"),
-                appSecret: configurationManager.OauthClientSecret("facebook"));
         }
     }
 }

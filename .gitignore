@@ -170,3 +170,4 @@ google*.html
 packages/
 logs/
 src/DescribeMe.Website/images
+.vs/

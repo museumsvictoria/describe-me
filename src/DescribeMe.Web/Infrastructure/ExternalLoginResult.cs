@@ -16,7 +16,7 @@ namespace DescribeMe.Web.Infrastructure
 
         public override void ExecuteResult(ControllerContext context)
         {
-            OAuthWebSecurity.RequestAuthentication(Provider, ReturnUrl);
+            OAuthWebSecurity.RequestAuthentication(Provider, "http://describeme.museumvictoria.com.au/account/externallogincallback");
         }
     }
 }
