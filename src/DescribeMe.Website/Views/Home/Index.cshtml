@@ -7,55 +7,18 @@
         <h1>
             <img src="/assets/logo-home-intro.png" alt="Describe Me"/>
         </h1>
-        <p>Please help us to improve Museums Victoria’s Collections website for people who are blind or have low vision.</p>
     </div>
     <div class="third">
         <img src="/assets/image-dude-typing.png" alt="Dude typing on a computer"/>
-        <div class="loginwith">
-            Log in with 
-            @if (OAuthWebSecurity.RegisteredClientData.Any())
-            {
-                using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post, new {id = "login", @class = "clearfix"}))
-                {
-                    @Html.AntiForgeryToken()
-                    foreach (AuthenticationClientData provider in OAuthWebSecurity.RegisteredClientData)
-                    {
-                        <input class="button @provider.AuthenticationClient.ProviderName" type="submit" name="provider" value="@provider.AuthenticationClient.ProviderName" title="Log in using your @provider.DisplayName account" />
-                    }
-                }
-            }            
-        </div>
-        <div class="or">
-            <span>or simply</span>
-        </div>
-        <a class="start-button" href="@Url.Action("describe", "home")">Start</a>
     </div>
 </section>
-<section class="box steps clearfix">
-    <div class="step one">
-        <h3>Pick an image</h3>
-        <p>We’ll show you a randomly-selected photo, or you can use the tags to find images you’re interested in.</p>
-    </div>
-    <div class="step two">
-        <h3>Look carefully</h3>
-        <p>What does the image convey? Read the information from our collection records if you need hints.</p>
-    </div>
-    <div class="step three">
-        <h3>Describe it</h3>
-        <p>Write a few words to describe what’s in the image. Submit and you’re done!</p>
-    </div>
+<section class="box clearfix farewell">
+    <h2>Farewell and thank you from Describe Me</h2>
+    <p>After 5 years of community contributions we have described an impressive 86% of our images lacking alt-text. As we are pretty happy with those numbers we have decided to shut down Describe Me on the <b>31st of August.</b></p>
+    <p>So thank you all for all your hard work, you have helped enhance our online collections for people who are blind or have low vision!</p>
 </section>
-<section class="box desc clearfix">
-    <div class="twothird">
-        <h3>About Describe Me</h3>
-        <p>Describe Me asks you to write alternative text (alt-text) for images to make our Collections Online more useful for people who are blind or have low vision.</p>
-        <p>Alt-text is text associated with an image that conveys the same essential information as the image. It is important for people who use screen readers or view websites in text-only format. By writing a short description of what you see, you’ll help to make Collections Online more useable and accessible.</p>
-        <div class="git">
-            <a href="https://github.com/museumsvictoria/describe-me/"><img src="/assets/logo-github.png" alt="GitHub" />visit us on GitHub</a>
-            <span>The source code for Describe me is now available on GitHub under The MIT license.</span>
-        </div>
-    </div>
-    <div class="third">
-        @{ Html.RenderAction("LeaderBoard", "Home"); }
+<section class="clearfix">
+    <div>
+        <img src="/assets/image-farewell.jpg" alt="black and white photograph of a group of people waving" />
     </div>
 </section>

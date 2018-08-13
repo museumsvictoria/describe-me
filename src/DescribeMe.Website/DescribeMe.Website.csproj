@@ -27,6 +27,8 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -108,6 +110,7 @@
     <Content Include="assets\image-example-1.jpg" />
     <Content Include="assets\image-example-2.jpg" />
     <Content Include="assets\image-example-3.jpg" />
+    <Content Include="assets\image-farewell.jpg" />
     <Content Include="assets\image-kids-smiling.jpg" />
     <Content Include="assets\image-speech-bubble-green.png" />
     <Content Include="assets\image-speech-bubble-red.png" />

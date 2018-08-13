@@ -14,7 +14,7 @@ namespace DescribeMe.Web.Config
             routes.MapRoute(
                 name: "HomeDescribe",
                 url: "describe",
-                defaults: new { controller = "home", action = "describe" }
+                defaults: new { controller = "home", action = "index" }
             );
 
             routes.MapRoute(
