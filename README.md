@@ -1,5 +1,5 @@
-#### IMPORTANT
-Project has now been closed down as it achieved its goal of describing the bulk of Museums Victorias collection images.
+# IMPORTANT
+**Project has now been closed down as it achieved its goal of describing the bulk of Museums Victorias collection images.**
 
 ## About Describe Me 
 [Describe Me](http://describeme.museumvictoria.com.au/) is a website that asks you to write alternative text (alt-text) for images contained within Museums Victoria’s collection in order to enhance our data making it more useful for people who are blind or have low vision.
